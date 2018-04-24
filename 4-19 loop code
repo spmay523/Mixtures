@@ -49,3 +49,10 @@ for(p in 1:nrow(pi_start_loop))
 
 write(tosubmit, "/home/projects/mixtures/Kendra/loop/tosubmit.txt")
 
+##Run outside of R. 
+for i in $(cat tosubmit.txt)
+do
+qsub -q all.q  $i
+echo $i
+done
+
