@@ -47,6 +47,8 @@ for(i in 1:nrow(pop_names_loop)){
     write(c(paste("Ntot = ", Ntot, sep=""), paste("N_pop1 = ", N_pop1, sep=""), paste("MAF_thresh = ", MAF_thresh, sep=""), paste("pi_start = c(", paste(t(pi_start), collapse=","), ")", sep=""),paste("pop_names = c('", paste(t(pop_names_loop[i,]), collapse="', '"), "')", sep=""), paste("threshold = ", threshold, sep="")), file=paste("/home/projects/mixtures/loop/", tmp, ".R", sep=""))
     write("source('/home/projects/mixtures/EM_function_1_forlooping.R')", file=paste("/home/projects/mixtures/loop/", tmp, ".R", sep=""), append=T)
     
+    write("source('/home/projects/mixtures/EM_function_1_forlooping.R') should be write("source('/home/projects/mixtures/EM_function_1_forlooping_mms.R')
+    
     write(c("#$ -cwd",paste("#$ -o /home/projects/mixtures/loop/", tmp, ".log", sep=""),paste("#$ -o /home/projects/mixtures/loop/", tmp, ".err", sep=""),"#$ -S /bin/bash", "", paste("Rscript /home/projects/mixtures/loop/", tmp, ".R", sep="")),file=paste("/home/projects/mixtures/loop/", tmp, ".sh", sep=""))
     
     tosubmit<-c(tosubmit, paste("/home/projects/mixtures/loop/", tmp, ".sh", sep=""))
