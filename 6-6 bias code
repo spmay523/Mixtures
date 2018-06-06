@@ -1,0 +1,51 @@
+
+
+setwd(paste("/home/projects/mixtures/Kendra/loop", person, sep="/"))
+
+int.list<-c(0.97, 0.5, 0.03) ##initial proportion values
+sim.list<-c(0.97, 0.5, 0.03)
+
+
+N=10000  ## simulated sample size
+
+pops<-c('AFR', 'AMR') ##two populations 
+
+
+
+##looping through plotting parameters##
+
+bias <-c()
+
+for(int in int.list)   ## truth 
+  
+{
+  
+  for(sim in sim.list)
+    
+  {
+    
+    temp<-read.table(paste0("pops", pops[1], "_", sim*N, '_', pops[2], (N-sim*N), "_start", int, "_", (1-int), ".txt"), header=F, as.is=T)
+    
+    k<-temp[nrow(temp),1] ## mean
+    l<-temp[nrow(temp),3]  ## median
+    
+    
+    bias_k<-k-sim
+    bias_l<-l-sim
+    
+    ##bias_k<-k-int
+    ##bias_l<-l-int
+    
+    both <- c(bias_k, bias_l, sim, int, pops)
+    
+    bias <- rbind(bias, both)
+    
+    
+    
+  }##end sim loop
+} ##end int loop
+
+
+colnames(bias) <- c('mean_bias', 'median_bias', 'Truth', 'Start', 'Pop1', 'Pop2')
+
+print (bias)
