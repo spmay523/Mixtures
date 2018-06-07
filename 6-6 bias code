@@ -49,3 +49,5 @@ for(int in int.list)   ## truth
 colnames(bias) <- c('mean_bias', 'median_bias', 'Truth', 'Start', 'Pop1', 'Pop2')
 
 print (bias)
+
+write.table(bias, file="NFE SAS .8 BIAS.txt", sep = "\t", col.names = TRUE)
