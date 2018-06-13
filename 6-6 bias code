@@ -1,53 +1,60 @@
 
-
 setwd(paste("/home/projects/mixtures/Kendra/loop", person, sep="/"))
 
-int.list<-c(0.97, 0.5, 0.03) ##initial proportion values
-sim.list<-c(0.97, 0.5, 0.03)
+int.list<-c(0.8, 0.5, 0.2) ## initial proportion values used correct graph
 
+sim.list<-c(0.8, 0.5, 0.2) ## simulated proportion values used correct graph
 
-N=10000  ## simulated sample size
+pop1="FIN"
+pop2=c("OTH", "SAS")
 
-pops<-c('AFR', 'AMR') ##two populations 
+N=10000  
 
+bias_out<-c() 
 
+bias<-c() 
 
-##looping through plotting parameters##
-
-bias <-c()
-
-for(int in int.list)   ## truth 
+for(int in int.list)    
   
-{
+	{
   
-  for(sim in sim.list)
+		for(sim in sim.list)    
     
-  {
-    
-    temp<-read.table(paste0("pops", pops[1], "_", sim*N, '_', pops[2], (N-sim*N), "_start", int, "_", (1-int), ".txt"), header=F, as.is=T)
-    
-    k<-temp[nrow(temp),1] ## mean
-    l<-temp[nrow(temp),3]  ## median
-    
-    
-    bias_k<-k-sim
-    bias_l<-l-sim
-    
-    ##bias_k<-k-int
-    ##bias_l<-l-int
-    
-    both <- c(bias_k, bias_l, sim, int, pops)
-    
-    bias <- rbind(bias, both)
-    
-    
-    
-  }##end sim loop
-} ##end int loop
+			{
+
+				for(i in 1:length(pop2))
+
+					{
 
 
-colnames(bias) <- c('mean_bias', 'median_bias', 'Truth', 'Start', 'Pop1', 'Pop2')
+						temp<-read.table(paste0("pops", pop1, "_", sim*N, '_', pop2[i], (N-sim*N), "_start", int, "_", (1-	
 
-print (bias)
+					int), ".txt"), header=F, as.is=T)
+   		
+    
+    			
+						k<-temp[nrow(temp),1]
+						l<-temp[nrow(temp),3]
 
-write.table(bias, file="NFE SAS .8 BIAS.txt", sep = "\t", col.names = TRUE)
+						bias_k<-k-sim
+						bias_l<-l-sim
+
+			
+						both <- c(bias_k, bias_l, sim, int, pop1, pop2[i])
+						bias <- rbind(bias, both)
+			
+					}
+			}
+	}
+
+bias<-data.frame(bias)
+
+names(bias) <- c('mean_bias', 'median_bias', 'Truth', 'Start','Pop1', 'Pop2')
+
+bias_out<-rbind(bias_out,bias)
+
+write.table(bias_out, file=paste(sim.list[1],"_BIAS.txt", sep=""), sep = "\t", quote=F, row.names = FALSE)
+
+
+
+
