@@ -11,7 +11,7 @@
 #' @export
 em_mix_known <- function(x, dat, pnames, pi_init, threshold = 0.01, MAF_thresh = 0.05, path = NA){
   pi_out <- pi_out_median <- pi_out_90 <- pi_new <- pi_median <- pi_90 <- pi_init
-  names(pi) <- names(pi_median) <- names(pi_new) <- names(pi_90) <- pnames[,1]
+  names(pi_median) <- names(pi_new) <- names(pi_90) <- pnames[,1]
   k <- nrow(pnames)
   N <- nrow(x)
   thresh_check <- threshold + 1
