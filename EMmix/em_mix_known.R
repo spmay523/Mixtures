@@ -27,7 +27,7 @@ em_mix_known <- function(x, dat, pnames, pi_init, threshold = 0.01, MAF_thresh =
       apply(pnames, 1, function(pop){
         x.p <- cbind(x, p[,pop[2:ncol(pnames)]])
         apply(x.p, 1, function(gen){
-          pi[pop[1]]*dmultinom(as.numeric(gen[1:ncol(pnames)-1]), prob = gen[ncol(pnames):(2 * (ncol(pnames)-1))], log = T)
+          pi[pop[1]]*dmultinom(as.numeric(gen[1:(ncol(pnames)-1)]), prob = gen[ncol(pnames):(2 * (ncol(pnames)-1))], log = T)
         })
       })
     )
