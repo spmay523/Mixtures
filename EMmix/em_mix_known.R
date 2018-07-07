@@ -15,7 +15,7 @@ em_mix_known <- function(x, dat, pnames, pi_init, threshold = 0.01, MAF_thresh =
   k <- nrow(pnames)
   N <- nrow(x)
   thresh_check <- threshold + 1
-  cols_toSelect <- character(); apply(pnames[,2:ncol(pnames)], 1, function(pop){cols_toSelect <<- c(cols_toSelect, pop)} )
+  cols_toSelect <- character(); apply(as.matrix(pnames[,2:ncol(pnames)]), 1, function(pop){cols_toSelect <<- c(cols_toSelect, pop)} )
   p <- dat # p <- dat(which(x$AF > MAF_thresh & x$AF < (1-MAF_thresh)))
   iter = 0
   
