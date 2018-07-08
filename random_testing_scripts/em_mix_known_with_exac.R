@@ -11,9 +11,11 @@ for(i in 1:length(pops)){
   pnames[i,] <- c(pops[i], paste("AF_",pops[i],sep=""))
 }
 # simulate some data for allele frequencies
+real_mix <- c(0.1, 0.3, 0.2, 0.3)
 x <- t(rbind(apply(exac[,pnames[,2]], 1, function(x){
-  rmultinom(1, Ntot, prob=x)
+  sapply(x, FUN = function(i){rbinom(n = 1, size = Ntot, prob=i)})
 })))
+
 pi_init <- c(0.1, 0.2, 0.3, 0.4)
 
 results <- em_mix_known(x = x, dat = exac, pnames = pnames, pi_init = pi_init)
