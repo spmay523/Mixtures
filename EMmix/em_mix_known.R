@@ -52,7 +52,7 @@ em_mix_known <- function(x, dat, pnames, pi_init, Ntot, threshold = 0.01, MAF_th
     }
   }
   # This accounts for instances when x is N x 1 (and pnames is therefore only K x 2); x is N x 1 because the one column is allele frequency
-  if(ncol(pnames) = 2){
+  if(ncol(pnames) == 2){
     if(any(x[,1] < 1)){x[,1] <- round(x[,1] * 2 * Ntot)} # need x data as counts for dbinom function
     while(thresh_check > threshold){
       pi = pi_new
