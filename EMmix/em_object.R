@@ -9,7 +9,7 @@ EMmix <- setClass(
 )
 
 setMethod("initialize",
-          signature = c(.Object="EMmix", y="EMmix"),
+          signature = c(.Object="EMmix"),
           function(.Object, pn, x, d, p_init, results){
             .Object@pnames = pn
             .Object@x = x
