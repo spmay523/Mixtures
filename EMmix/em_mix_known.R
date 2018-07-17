@@ -36,7 +36,9 @@ em_mix_known <- function(x, dat, pnames, pi_init, Ntot, threshold = 0.01, MAF_th
       pi_new<-apply(gamma_tmp,2,function(x){mean(x, na.rm=T)})
       names(pi_new) <- names(pi)
       pi_median<-apply(gamma_tmp,2,function(x){median(x, na.rm=T)})
+      names(pi_median) <- names(pi)
       pi_90<-apply(gamma_tmp,2,function(x){quantile(x, probs=0.90,na.rm=T)})
+      names(pi_90) <- names(pi)
       
       pi_out<-rbind(pi_out, pi_new)
       pi_out_median<-rbind(pi_out_median, pi_median)
@@ -84,12 +86,16 @@ em_mix_known <- function(x, dat, pnames, pi_init, Ntot, threshold = 0.01, MAF_th
       # }
     }
   }
-  iter_results <- cbind(pi_out, pi_out_median, pi_out_90)
-  dimnames(iter_results) <- list(c(),c(
-    c(paste(pnames[,1], "_mean", sep = "")),
-    c(paste(pnames[,1], "_median", sep = "")),
-    c(paste(pnames[,1], "_90", sep = ""))
-  ))
-  print(pi_median)
-  return(iter_results)
+  # old return
+  # iter_results <- cbind(pi_out, pi_out_median, pi_out_90)
+  # dimnames(iter_results) <- list(c(),c(
+  #   c(paste(pnames[,1], "_mean", sep = "")),
+  #   c(paste(pnames[,1], "_median", sep = "")),
+  #   c(paste(pnames[,1], "_90", sep = ""))
+  # ))
+  # print(pi_median)
+  # return(iter_results)
+  mix <- EMmix(pnames, as.data.frame(x), as.data.frame(dat), pi_init, pi_out_median, pi_out, pi_out_90)
+  show(mix)
+  return(mix)
 }
