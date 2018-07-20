@@ -4,20 +4,21 @@ EMmix <- setClass(
   "EMmix",
   slots = c(
     pnames = "matrix", x="data.frame", dat="data.frame", pi_init="numeric",
-    med = "matrix", mu = "matrix", x90 = "matrix"
+    med = "matrix", mu = "matrix", x90 = "matrix", geneMixes = "matrix"
   )
 )
 
 setMethod("initialize",
           signature = c(.Object="EMmix"),
-          function(.Object, pn, x, d, p_init, med, mu, x90){
-            .Object@pnames = pn
+          function(.Object, pnames, x, dat, pi_init, med, mu, x90, geneMixes){
+            .Object@pnames = pnames
             .Object@x = x
-            .Object@dat = d
-            .Object@pi_init = p_init
+            .Object@dat = dat
+            .Object@pi_init = pi_init
             .Object@med = med
             .Object@mu = mu
             .Object@x90 = x90
+            .Object@geneMixes = geneMixes
             return(.Object)
           }
 )

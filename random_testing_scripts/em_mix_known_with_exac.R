@@ -1,5 +1,6 @@
 # Running em_mix_known sample
 setwd("/home/projects/mixtures/Sam/EMmix_repo")
+source("Mixtures/EMmix/em_mix_known.R") # load EMmix object definition
 source("Mixtures/EMmix/em_mix_known.R") # load em_mix_known function
 Ntot = 5000
 N = 1500 # this just limits the number of rows being pulled in; if you want to use the full data set then, remove the nrows parameter from the read.table command below

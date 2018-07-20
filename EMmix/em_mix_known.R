@@ -95,7 +95,9 @@ em_mix_known <- function(x, dat, pnames, pi_init, Ntot, threshold = 0.01, MAF_th
   # ))
   # print(pi_median)
   # return(iter_results)
-  mix <- EMmix(pnames, as.data.frame(x), as.data.frame(dat), pi_init, pi_out_median, pi_out, pi_out_90)
+  colnames(gamma_tmp) <- pnames[,1]
+  mix <- EMmix(pnames = pnames, x = as.data.frame(x), dat = as.data.frame(dat), 
+               pi_init = pi_init, med = pi_out_median, mu = pi_out, x90 = pi_out_90, geneMixes = gamma_tmp)
   show(mix)
   return(mix)
 }
