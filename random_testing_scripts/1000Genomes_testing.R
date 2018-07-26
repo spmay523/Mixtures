@@ -24,7 +24,7 @@ real_pi <- c(0.3,0,0.2,0,0.5)
 pop_number <- num_pop  * real_pi
 names(pop_number) <- popNames
 names(real_pi) <- popNames
-pop_sim<-as.data.frame(matrix(nrow = l, ncol = length(hardyWeinNames), dimnames = list(dat$POS,hardyWeinNames)))
+pop_sim<-as.data.frame(matrix(nrow = l, ncol = 0, dimnames = list(dat$POS,c())))
 for(pop in popNames){
   popDat <- dat_hardyWein[,paste(rep(pop, each = 3), c("_hom","_het","_homref"),sep="")]
   pop_sim <<- cbind(pop_sim, t(apply(popDat, 1, function(pd){rmultinom(n=1, size = pop_number, prob = pd)})))
