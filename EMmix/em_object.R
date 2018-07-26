@@ -1,5 +1,14 @@
 library(methods)
 
+#' @param pnames a matrix of ancestry names in the first column and the corresponding column names for each genotype.
+#' @param x the observed data.
+#' @param dat the reference data that is used to determine the mixture proportions in x.
+#' @param pi_init the initiating mixture proportions.
+#' @param med the median values of the estimated mixture proportions of each ancestry from each EM iteration.
+#' @param mu the mean values of the estimated mixture proportions of each ancestry from each EM iteration.
+#' @param x90 the upper 90th quantile values of the estimated mixture proportions of each ancestry from each EM iteration.
+#' @param geneMixes the final estimates for the genetic inheritances. Each row indicates a different gene, and each column indicates an ancestry.
+
 EMmix <- setClass(
   "EMmix",
   slots = c(
