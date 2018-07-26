@@ -2,7 +2,7 @@ setwd("/home/projects/mixtures/Sam/EMmix_repo/Mixtures/EMmix/")
 source("em_mix_known.R")
 source("em_object.R")
 
-dat <- read.table("/home/projects/mixtures/yinfei/temp4")
+dat <- read.table("/home/projects/mixtures/yinfei/temp4", header = TRUE)
 popNames <- c("AMR", "AFR", "EUR", "EAS", "SAS")
 l <- nrow(dat)
 hardyWeinNames <- paste(rep(popNames, each = 3), c("_hom","_het","_homref"),sep="")
