@@ -30,7 +30,7 @@ em_mix_known <- function(x, dat, pnames, pi_init, Ntot, threshold = 0.01, MAF_th
           })
         })
       )
-      gamma_tmp<-(apply(gamma_tmp.a,1,function(x){sum(x, na.rm=T)})-gamma_tmp.a)/apply(gamma_tmp.a,1,function(x){sum(x, na.rm=T)})
+      gamma_tmp<-gamma_tmp.a/apply(gamma_tmp.a,1,function(x){sum(x, na.rm=T)})
       
       # maximization step
       pi_new<-apply(gamma_tmp,2,function(x){mean(x, na.rm=T)})
@@ -65,7 +65,7 @@ em_mix_known <- function(x, dat, pnames, pi_init, Ntot, threshold = 0.01, MAF_th
           pi[pop[1]]*dbinom(x = x.p[,1], size = Ntot, prob = x.p[,2], log = TRUE) # this only works when x is given as integers and not frequencies
         })
       )
-      gamma_tmp<-(apply(gamma_tmp.a,1,function(x){sum(x, na.rm=T)})-gamma_tmp.a)/apply(gamma_tmp.a,1,function(x){sum(x, na.rm=T)})
+      gamma_tmp<-gamma_tmp.a/apply(gamma_tmp.a,1,function(x){sum(x, na.rm=T)})
       
       # maximization step
       pi_new<-apply(gamma_tmp,2,function(x){mean(x, na.rm=T)})
