@@ -1,0 +1,7 @@
+Package: EMmix
+Version: 1.0
+Date: 2018-07-29
+Title: Expectation Maximization for Ancestry Mixtures
+Description: This package applies the expectation maximization algorithm to estimate the proportions of ancestries present in a set of observed allele frequencies by using a reference dataset of the allele frequencies at the same genetic markers.
+Author: Sam May <spmay523@gmail.com>
+Maintainer: Sam May <spmay523@gmail.com>
